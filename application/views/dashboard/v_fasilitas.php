@@ -11,12 +11,12 @@
 		<div class="row">
 			<div class="col-lg-12">
 				
-				<a href="<?php echo base_url().'dashboard/fasilitas_tambah'; ?>" class="btn btn-sm btn-primary">Tambah fasilitas</a>
+				<a href="<?php echo base_url().'dashboard/fasilitas_tambah'; ?>" class="btn btn-sm btn-default">Tambah fasilitas</a>
 
 				<br/>
 				<br/>
 
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Fasilitas</h3>
 					</div>

@@ -8,7 +8,7 @@
 
 	<section class="content">
 
-		<a href="<?php echo base_url().'dashboard/pages'; ?>" class="btn btn-sm btn-primary">Kembali</a>
+		<a href="<?php echo base_url().'dashboard/pages'; ?>" class="btn btn-sm btn-default">Kembali</a>
 
 		<br/>
 		<br/>
@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 
-					<div class="box box-primary">
+					<div class="box box-default">
 						<div class="box-body">
 
 

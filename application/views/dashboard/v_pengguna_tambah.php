@@ -10,12 +10,12 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url().'dashboard/pengguna'; ?>" class="btn btn-sm btn-primary">Kembali</a>
+				<a href="<?php echo base_url().'dashboard/pengguna'; ?>" class="btn btn-sm btn-default">Kembali</a>
 				
 				<br/>
 				<br/>
 
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Pengguna</h3>
 					</div>

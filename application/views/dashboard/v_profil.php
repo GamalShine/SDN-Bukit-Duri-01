@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Update Profil</h3>
 					</div>

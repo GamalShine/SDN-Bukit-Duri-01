@@ -574,10 +574,9 @@ class Dashboard extends CI_Controller {
 
 			$nama = $this->input->post('nama');
 			$deskripsi = $this->input->post('deskripsi');
-			$link_facebook = $this->input->post('link_facebook');
-			$link_twitter = $this->input->post('link_twitter');
 			$link_instagram = $this->input->post('link_instagram');
-			$link_github = $this->input->post('link_github');
+			$link_youtube = $this->input->post('link_youtube');
+			$link_tiktok = $this->input->post('link_tiktok');
 
 			$where = array(
 
@@ -586,10 +585,9 @@ class Dashboard extends CI_Controller {
 			$data = array(
 				'nama' => $nama,
 				'deskripsi' => $deskripsi,
-				'link_facebook' => $link_facebook,
-				'link_twitter' => $link_twitter,
 				'link_instagram' => $link_instagram,
-				'link_github' => $link_github
+				'link_youtube' => $link_youtube,
+				'link_tiktok' => $link_tiktok
 			);
 
 			// update pengaturan
@@ -632,6 +630,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		$data['kelulusan'] = $this->m_data->get_data('kelulusan')->result();
+		$data['import_result'] = $this->session->flashdata('import_result');
 		$this->load->view('dashboard/v_header');
 		$this->load->view('dashboard/v_kelulusan',$data);
 		$this->load->view('dashboard/v_footer');
@@ -656,23 +655,23 @@ class Dashboard extends CI_Controller {
 
 		$this->form_validation->set_rules('nisn','NISN','required');
 		$this->form_validation->set_rules('nama','Nama','required');
+		$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','required');
 		$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','required');
 		$this->form_validation->set_rules('status','Status','required');
-		$this->form_validation->set_rules('keterangan','Keterangan','required');
 
 		if($this->form_validation->run() != false){
 			$nisn = $this->input->post('nisn');
 			$nama = $this->input->post('nama');
+			$tempat_lahir = $this->input->post('tempat_lahir');
 			$tanggal_lahir = $this->input->post('tanggal_lahir');
 			$status = $this->input->post('status');
-			$keterangan = $this->input->post('keterangan');
 
 			$data = array(
 				'kelulusan_nisn' => $nisn,
 				'kelulusan_nama' => $nama,
+				'kelulusan_tempat_lahir' => $tempat_lahir,
 				'kelulusan_tanggal_lahir' => $tanggal_lahir,
-				'kelulusan_status' => $status,
-				'kelulusan_keterangan' => $keterangan
+				'kelulusan_status' => $status
 			);
 
 			$this->m_data->insert_data($data,'kelulusan');
@@ -707,17 +706,17 @@ class Dashboard extends CI_Controller {
 
 		$this->form_validation->set_rules('nisn','NISN','required');
 		$this->form_validation->set_rules('nama','Nama','required');
+		$this->form_validation->set_rules('tempat_lahir','Tempat Lahir','required');
 		$this->form_validation->set_rules('tanggal_lahir','Tanggal Lahir','required');
 		$this->form_validation->set_rules('status','Status','required');
-		$this->form_validation->set_rules('keterangan','Keterangan','required');
 
 		if($this->form_validation->run() != false){
 			$id = $this->input->post('id');
 			$nisn = $this->input->post('nisn');
 			$nama = $this->input->post('nama');
+			$tempat_lahir = $this->input->post('tempat_lahir');
 			$tanggal_lahir = $this->input->post('tanggal_lahir');
 			$status = $this->input->post('status');
-			$keterangan = $this->input->post('keterangan');
 
 			$where = array(
 				'kelulusan_id' => $id
@@ -726,9 +725,9 @@ class Dashboard extends CI_Controller {
 			$data = array(
 				'kelulusan_nisn' => $nisn,
 				'kelulusan_nama' => $nama,
+				'kelulusan_tempat_lahir' => $tempat_lahir,
 				'kelulusan_tanggal_lahir' => $tanggal_lahir,
-				'kelulusan_status' => $status,
-				'kelulusan_keterangan' => $keterangan
+				'kelulusan_status' => $status
 			);
 
 			$this->m_data->update_data($where,$data,'kelulusan');
@@ -756,6 +755,254 @@ class Dashboard extends CI_Controller {
 		);
 		$this->m_data->delete_data($where,'kelulusan');
 		redirect(base_url().'dashboard/kelulusan');
+	}
+
+	public function kelulusan_import()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$data['import_result'] = $this->session->flashdata('import_result');
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_kelulusan_import', $data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function kelulusan_template()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$this->_siapkan_output_excel();
+		require_once APPPATH.'third_party/simplexlsxgen/SimpleXLSXGen.php';
+
+		$rows = array(
+			array('NISN', 'Nama', 'Tempat Lahir', 'Tanggal Lahir', 'Status'),
+			array('0138516647', 'CONTOH NAMA SISWA', 'Jakarta', '06/12/2013', 'LULUS')
+		);
+
+		$xlsx = \Shuchkin\SimpleXLSXGen::fromArray($rows, 'Data Kelulusan');
+		$xlsx->downloadAs('template_kelulusan.xlsx');
+		exit;
+	}
+
+	public function kelulusan_import_aksi()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$upload_path = './uploads/kelulusan/';
+		if (!is_dir($upload_path)) {
+			mkdir($upload_path, 0755, true);
+		}
+
+		$config['upload_path']   = $upload_path;
+		$config['allowed_types'] = 'xlsx|xls|csv';
+		$config['max_size']      = 5120;
+		$config['encrypt_name']  = true;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('file_excel')) {
+			$this->session->set_flashdata('import_result', array(
+				'error' => $this->upload->display_errors('', '')
+			));
+			redirect(base_url().'dashboard/kelulusan_import');
+		}
+
+		$file = $this->upload->data();
+		$file_path = $file['full_path'];
+
+		$result = $this->_proses_import_kelulusan($file_path);
+		@unlink($file_path);
+
+		$this->session->set_flashdata('import_result', $result);
+		redirect(base_url().'dashboard/kelulusan');
+	}
+
+	private function _siapkan_output_excel()
+	{
+		while (ob_get_level() > 0) {
+			ob_end_clean();
+		}
+		@ini_set('display_errors', '0');
+	}
+
+	private function _baca_baris_spreadsheet($file_path)
+	{
+		$extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+
+		if ($extension === 'csv') {
+			return $this->_baca_baris_csv($file_path);
+		}
+
+		if ($extension === 'xlsx') {
+			require_once APPPATH.'third_party/simplexlsx/SimpleXLSX.php';
+			$xlsx = \Shuchkin\SimpleXLSX::parse($file_path);
+			if (!$xlsx) {
+				throw new \Exception(\Shuchkin\SimpleXLSX::parseError());
+			}
+			return $xlsx->rows();
+		}
+
+		if ($extension === 'xls') {
+			require_once APPPATH.'third_party/simplexls/SimpleXLS.php';
+			$xls = \Shuchkin\SimpleXLS::parse($file_path);
+			if (!$xls) {
+				throw new \Exception(\Shuchkin\SimpleXLS::parseError());
+			}
+			return $xls->rows();
+		}
+
+		throw new \Exception('Format file tidak didukung');
+	}
+
+	private function _baca_baris_csv($file_path)
+	{
+		$rows = array();
+		$handle = fopen($file_path, 'r');
+		if ($handle === false) {
+			throw new \Exception('File CSV tidak dapat dibuka');
+		}
+
+		while (($row = fgetcsv($handle, 0, ',')) !== false) {
+			if (!empty($row) && isset($row[0])) {
+				$row[0] = preg_replace('/^\xEF\xBB\xBF/', '', (string) $row[0]);
+			}
+			$rows[] = $row;
+		}
+		fclose($handle);
+
+		return $rows;
+	}
+
+	private function _proses_import_kelulusan($file_path)
+	{
+		$success = 0;
+		$failed = array();
+		$skipped = array();
+		$seen_nisn = array();
+
+		try {
+			$rows = $this->_baca_baris_spreadsheet($file_path);
+		} catch (\Exception $e) {
+			return array('error' => 'File Excel tidak dapat dibaca. Pastikan format file benar.');
+		}
+
+		if (count($rows) < 2) {
+			return array('error' => 'File Excel kosong atau tidak memiliki data.');
+		}
+
+		$start_row = 0;
+		$first_row = array_map('strtolower', array_map('trim', array_map('strval', $rows[0])));
+		if (in_array('nisn', $first_row, true)) {
+			$start_row = 1;
+		}
+
+		for ($i = $start_row; $i < count($rows); $i++) {
+			$row_num = $i + 1;
+			$row = $rows[$i];
+
+			$nisn = isset($row[0]) ? preg_replace('/\D/', '', trim((string)$row[0])) : '';
+			$nama = isset($row[1]) ? trim((string)$row[1]) : '';
+			$tempat_lahir = isset($row[2]) ? trim((string)$row[2]) : '';
+			$tanggal_raw = isset($row[3]) ? $row[3] : '';
+			$status = isset($row[4]) ? strtoupper(trim((string)$row[4])) : '';
+
+			if ($nisn === '' && $nama === '' && $tempat_lahir === '' && $tanggal_raw === '' && $status === '') {
+				continue;
+			}
+
+			if ($nisn === '' || $nama === '' || $tempat_lahir === '' || $tanggal_raw === '' || $status === '') {
+				$failed[] = array('row' => $row_num, 'message' => 'Data tidak lengkap');
+				continue;
+			}
+
+			if (isset($seen_nisn[$nisn])) {
+				$skipped[] = array('row' => $row_num, 'nisn' => $nisn, 'message' => 'NISN sudah terdaftar (duplikat di file)');
+				continue;
+			}
+			$seen_nisn[$nisn] = true;
+
+			if ($this->m_data->nisn_exists($nisn)) {
+				$skipped[] = array('row' => $row_num, 'nisn' => $nisn, 'message' => 'NISN sudah terdaftar');
+				continue;
+			}
+
+			$tanggal_lahir = $this->_parse_tanggal_import($tanggal_raw);
+			if ($tanggal_lahir === false) {
+				$failed[] = array('row' => $row_num, 'message' => 'Format tanggal lahir tidak valid (gunakan DD/MM/YYYY)');
+				continue;
+			}
+
+			if ($status !== 'LULUS' && $status !== 'TIDAK LULUS') {
+				$failed[] = array('row' => $row_num, 'message' => 'Status harus LULUS atau TIDAK LULUS');
+				continue;
+			}
+
+			$data = array(
+				'kelulusan_nisn' => $nisn,
+				'kelulusan_nama' => $nama,
+				'kelulusan_tempat_lahir' => $tempat_lahir,
+				'kelulusan_tanggal_lahir' => $tanggal_lahir,
+				'kelulusan_status' => $status
+			);
+
+			$this->m_data->insert_data($data, 'kelulusan');
+			$success++;
+		}
+
+		return array(
+			'success' => $success,
+			'failed' => $failed,
+			'skipped' => $skipped
+		);
+	}
+
+	private function _parse_tanggal_import($value)
+	{
+		if ($value === null || $value === '') {
+			return false;
+		}
+
+		if (is_numeric($value)) {
+			$serial = (float) $value;
+			if ($serial >= 1 && $serial <= 2958465) {
+				$tanggal = $this->_excel_serial_ke_tanggal($serial);
+				if ($tanggal !== false) {
+					return $tanggal;
+				}
+			}
+		}
+
+		$value = trim((string)$value);
+
+		if (preg_match('/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/', $value, $m)) {
+			return sprintf('%04d-%02d-%02d', $m[3], $m[2], $m[1]);
+		}
+
+		if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
+			return $value;
+		}
+
+		$time = strtotime($value);
+		if ($time !== false) {
+			return date('Y-m-d', $time);
+		}
+
+		return false;
+	}
+
+	private function _excel_serial_ke_tanggal($serial)
+	{
+		$unix_timestamp = (int) round(($serial - 25569) * 86400);
+		if ($unix_timestamp <= 0) {
+			return false;
+		}
+		return gmdate('Y-m-d', $unix_timestamp);
 	}
 	// end crud kelulusan
 
@@ -915,6 +1162,170 @@ class Dashboard extends CI_Controller {
 		redirect(base_url().'dashboard/fasilitas');
 	}
 	// end crud fasilitas
+
+	// CRUD TESTIMONI
+	public function testimoni()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$this->load->helper('text');
+		$data['testimoni'] = $this->db->query("SELECT * FROM testimoni ORDER BY testimoni_urutan ASC, testimoni_id ASC")->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_testimoni',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function testimoni_tambah()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_testimoni_tambah');
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function testimoni_aksi()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$this->form_validation->set_rules('nama','Nama','required');
+		$this->form_validation->set_rules('isi','Isi Testimoni','required');
+		$this->form_validation->set_rules('urutan','Urutan','required|integer');
+		if (empty($_FILES['foto']['name'])){
+			$this->form_validation->set_rules('foto', 'Foto', 'required');
+		}
+
+		if($this->form_validation->run() != false){
+			if(!is_dir('./gambar/testimoni/')){
+				mkdir('./gambar/testimoni/', 0755, true);
+			}
+
+			$config['upload_path']   = './gambar/testimoni/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|jfif';
+			$config['max_size']      = 2048;
+
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('foto')) {
+				$foto = $this->upload->data();
+
+				$data = array(
+					'testimoni_nama' => $this->input->post('nama'),
+					'testimoni_isi' => $this->input->post('isi'),
+					'testimoni_foto' => $foto['file_name'],
+					'testimoni_urutan' => $this->input->post('urutan')
+				);
+
+				$this->m_data->insert_data($data,'testimoni');
+				redirect(base_url().'dashboard/testimoni');
+			} else {
+				$data['foto_error'] = $this->upload->display_errors();
+				$this->load->view('dashboard/v_header');
+				$this->load->view('dashboard/v_testimoni_tambah',$data);
+				$this->load->view('dashboard/v_footer');
+			}
+		}else{
+			$this->load->view('dashboard/v_header');
+			$this->load->view('dashboard/v_testimoni_tambah');
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
+	public function testimoni_edit($id)
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$where = array(
+			'testimoni_id' => $id
+		);
+		$data['testimoni'] = $this->m_data->edit_data($where,'testimoni')->result();
+		$this->load->view('dashboard/v_header');
+		$this->load->view('dashboard/v_testimoni_edit',$data);
+		$this->load->view('dashboard/v_footer');
+	}
+
+	public function testimoni_update()
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$this->form_validation->set_rules('nama','Nama','required');
+		$this->form_validation->set_rules('isi','Isi Testimoni','required');
+		$this->form_validation->set_rules('urutan','Urutan','required|integer');
+
+		if($this->form_validation->run() != false){
+			$id = $this->input->post('id');
+
+			$where = array(
+				'testimoni_id' => $id
+			);
+
+			$data = array(
+				'testimoni_nama' => $this->input->post('nama'),
+				'testimoni_isi' => $this->input->post('isi'),
+				'testimoni_urutan' => $this->input->post('urutan')
+			);
+
+			if (!empty($_FILES['foto']['name'])){
+				if(!is_dir('./gambar/testimoni/')){
+					mkdir('./gambar/testimoni/', 0755, true);
+				}
+
+				$config['upload_path']   = './gambar/testimoni/';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|jfif';
+				$config['max_size']      = 2048;
+
+				$this->load->library('upload', $config);
+
+				if ($this->upload->do_upload('foto')) {
+					$foto = $this->upload->data();
+					$data['testimoni_foto'] = $foto['file_name'];
+				}else{
+					$data['foto_error'] = $this->upload->display_errors();
+					$data['testimoni'] = $this->m_data->edit_data($where,'testimoni')->result();
+					$this->load->view('dashboard/v_header');
+					$this->load->view('dashboard/v_testimoni_edit',$data);
+					$this->load->view('dashboard/v_footer');
+					return;
+				}
+			}
+
+			$this->m_data->update_data($where,$data,'testimoni');
+			redirect(base_url().'dashboard/testimoni');
+		}else{
+			$id = $this->input->post('id');
+			$where = array(
+				'testimoni_id' => $id
+			);
+			$data['testimoni'] = $this->m_data->edit_data($where,'testimoni')->result();
+			$this->load->view('dashboard/v_header');
+			$this->load->view('dashboard/v_testimoni_edit',$data);
+			$this->load->view('dashboard/v_footer');
+		}
+	}
+
+	public function testimoni_hapus($id)
+	{
+		if($this->session->userdata('level') != "admin"){
+			redirect(base_url().'dashboard');
+		}
+
+		$where = array(
+			'testimoni_id' => $id
+		);
+		$this->m_data->delete_data($where,'testimoni');
+		redirect(base_url().'dashboard/testimoni');
+	}
+	// end crud testimoni
 
 	// CRUD PENGGUNA
 	public function pengguna()

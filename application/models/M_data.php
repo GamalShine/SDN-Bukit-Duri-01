@@ -36,9 +36,11 @@ class M_data extends CI_Model{
 	function delete_data($where,$table){
 		$this->db->delete($table,$where);
 	}
+
+	function nisn_exists($nisn, $table = 'kelulusan'){
+		$this->db->where('kelulusan_nisn', $nisn);
+		return $this->db->count_all_results($table) > 0;
+	}
 	// AKHIR FUNGSI CRUD
 
-	
 }
-
-?>

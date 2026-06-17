@@ -6,7 +6,7 @@
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4"><?php echo $pengaturan->nama ?></h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Selamat Datang di Portal Informasi Sekolah <?php echo $pengaturan->nama ?> </span><strong class="text-slider"></strong></p>
+          <p class="intro-subtitle"><span class="text-slider-items">Selamat Datang di Portal Informasi  <?php echo $pengaturan->nama ?> </span><strong class="text-slider"></strong></p>
         </div>
       </div>
     </div>
@@ -54,12 +54,14 @@
             </div>
             <div class="service-content">
               <h2 class="s-title">MISI</h2>
-              <p class="s-description text-center">
-                <p> 1. Mewujudkan lulusan SDN BUKIT DURI 01 Jakarta Selatan yang unggul </p>
-                <p> 2. Mewujudkan kemampuan olah raga yang tangguh dan kompetitif </p>
-                <p> 3. Mewujudkan kemampuan di bidang seni yang tangguh dan kompetitif </p>
-                <p> 4. Meningkatkan kemampuan siswa, guru dan tenaga kependidikan dalam mengoptimalkan penggunaan media teknologi informasi dan komunikasi. </p>
-              </p>
+              <div class="s-description text-left">
+                <ul style="list-style-type: decimal; padding-left: 20px;">
+                  <li>Mewujudkan lulusan SDN BUKIT DURI 01 Jakarta Selatan yang unggul</li>
+                  <li>Mewujudkan kemampuan olah raga yang tangguh dan kompetitif</li>
+                  <li>Mewujudkan kemampuan di bidang seni yang tangguh dan kompetitif</li>
+                  <li>Meningkatkan kemampuan siswa, guru dan tenaga kependidikan dalam mengoptimalkan penggunaan media teknologi informasi dan komunikasi</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -69,11 +71,9 @@
               <span class="ico-circle"><i class="ion-android-checkbox"></i></span>
             </div>
             <div class="service-content">
-              <h2 class="s-title">Tujuan</h2>
+              <h2 class="s-title">TUJUAN</h2>
               <p class="s-description text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                provident vitae! Magni
-                tempora perferendis eum non provident.
+                Mempersiapkan peserta didik menjadi individu yang cerdas, berakhlak mulia, dan memiliki keterampilan yang relevan dengan perkembangan zaman, serta mampu memberikan kontribusi positif bagi masyarakat dan lingkungan sekitar.
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@
   </section>
   <!--/ Section Services End /-->
 
-  <div class="section-counter paralax-mf bg-image" style="background-image: url(img/belajar-smp-bg.jpg)">
+  <div class="section-counter paralax-mf bg-image" style="background-image: url(<?php echo base_url(); ?>assets_frontend/img/belajar-smp-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
@@ -182,39 +182,28 @@
   <!--/ Section Portfolio End /-->
 
   <!--/ Section Testimonials Star /-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(assets_frontend/img/belajar-smp-bg.jpg)">
+  <div class="testimonials paralax-mf bg-image" style="background-image: url(<?php echo base_url(); ?>assets_frontend/img/belajar-smp-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="<?php echo base_url(); ?>gambar/website/profil.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Muhammad Rifki Permana</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  "Mengajar dan mengabdi di sekolah ini membuat saya lebih percaya akan pentingnya pendidikan karakter di masa kini dan yang akan datang,
-                  suasana sekolah yang berbeda dengan yang lain, di sini seluruh steckholder ikut berperan dalam peningkatan kualitas pendidikan karekter serta 
-                  terus berkomitmen dalam menciptakan generasi penerus bangsa yang berkualitas"
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
-            <div class="testimonial-box">
-              <div class="author-test">
-                <img src="<?php echo base_url(); ?>gambar/website/profil2.jpg" alt="" class="rounded-circle b-shadow-a">
-                <span class="author">Muhammad Danutirta</span>
-              </div>
-              <div class="content-test">
-                <p class="description lead">
-                  "Pernah menjadi salah satu bagian dari sekolah ini adalah kebanggaan untuk ku, disini bukan hanya tempat untuk menimba ilmu saja, melainkan dapat 
-                  dijadikan rumah kedua bagi kita, dan di sini pun saya baru tersadar bahwa belajar itu ternayata se-asik ini"
-                </p>
-                <span class="comit"><i class="fa fa-quote-right"></i></span>
-              </div>
-            </div>
+            <?php if(!empty($testimoni)){ ?>
+              <?php foreach($testimoni as $t){ ?>
+                <div class="testimonial-box">
+                  <div class="author-test">
+                    <img src="<?php echo base_url(); ?>gambar/testimoni/<?php echo $t->testimoni_foto; ?>" alt="<?php echo htmlspecialchars($t->testimoni_nama); ?>" class="rounded-circle b-shadow-a">
+                    <span class="author"><?php echo $t->testimoni_nama; ?></span>
+                  </div>
+                  <div class="content-test">
+                    <p class="description lead">
+                      "<?php echo nl2br(htmlspecialchars($t->testimoni_isi)); ?>"
+                    </p>
+                    <span class="comit"><i class="fa fa-quote-right"></i></span>
+                  </div>
+                </div>
+              <?php } ?>
+            <?php } ?>
           </div>
         </div>
       </div>

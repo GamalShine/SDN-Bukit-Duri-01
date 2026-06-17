@@ -29,7 +29,7 @@ a {
 }
 
 a:hover {
-  color: #0078ff;
+  color: #444444;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
 }
@@ -39,7 +39,7 @@ a:hover {
 }
 
 .color-a {
-  color: #0078ff;
+  color: #444444;
 }
 
 .color-d {
@@ -56,11 +56,20 @@ a:hover {
 .work-box,
 .card-blog {
   box-shadow: 0 13px 8px -10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-box:hover,
+.work-box:hover,
+.card-blog:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
 }
 
 .box-shadow-a,
 .button:hover {
-  box-shadow: 0 0 0 4px #cde1f8;
+  box-shadow: 0 0 0 4px #cccccc;
 }
 
 .display-5 {
@@ -90,7 +99,7 @@ a:hover {
 }
 
 .overlay-mf {
-  background-color: #0078ff;
+  background-color: #444444;
 }
 
 .overlay-mf {
@@ -160,7 +169,7 @@ a:hover {
 .line-mf {
   width: 40px;
   height: 5px;
-  background-color: #0078ff;
+  background-color: #444444;
   margin: 0 auto;
 }
 
@@ -179,7 +188,7 @@ a:hover {
   content: '';
   position: absolute;
   height: 3px;
-  background-color: #0078ff;
+  background-color: #444444;
   width: 100px;
   bottom: -12px;
 }
@@ -216,14 +225,14 @@ a:hover {
   border-radius: 50%;
   line-height: 1.4;
   margin: 0 15px 0 0;
-  box-shadow: 0 0 0 3px #0078ff;
+  box-shadow: 0 0 0 3px #444444;
   transition: all 500ms ease;
 }
 
 .socials .ico-circle:hover {
-  background-color: #0078ff;
+  background-color: #444444;
   color: #fff;
-  box-shadow: 0 0 0 3px #cde1f8;
+  box-shadow: 0 0 0 3px #cccccc;
   transition: all 500ms ease;
 }
 
@@ -246,7 +255,7 @@ a:hover {
 }
 
 .list-ico span {
-  color: #0078ff;
+  color: #444444;
   margin-right: 10px;
 }
 
@@ -260,7 +269,7 @@ a:hover {
   line-height: 1.55;
   margin: 0 auto;
   text-align: center;
-  box-shadow: 0 0 0 10px #0078ff;
+  box-shadow: 0 0 0 10px #444444;
   display: block;
 }
 
@@ -279,15 +288,15 @@ a:hover {
   width: 18px;
   height: 7px;
   margin: 5px 5px;
-  background: #cde1f8;
-  border: 0px solid #cde1f8;
+  background: #cccccc;
+  border: 0px solid #cccccc;
   display: block;
   transition: all 0.6s ease-in-out;
   cursor: pointer;
 }
 
 .owl-theme .owl-dots .owl-dot:hover span {
-  background-color: #cde1f8;
+  background-color: #cccccc;
 }
 
 .owl-theme .owl-dots .owl-dot.active span {
@@ -307,7 +316,7 @@ a:hover {
   position: fixed;
   width: 42px;
   height: 42px;
-  background-color: #0078ff;
+  background-color: #444444;
   opacity: .7;
   font-size: 1.6rem;
   line-height: 1.5;
@@ -326,7 +335,7 @@ a:hover {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #0078ff;
+  background: #444444;
   color: #fff;
   width: 44px;
   height: 44px;
@@ -364,7 +373,7 @@ a:hover {
   top: calc(50% - 30px);
   left: calc(50% - 30px);
   border: 6px solid #f2f2f2;
-  border-top: 6px solid #0078ff;
+  border-top: 6px solid #444444;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -481,26 +490,26 @@ a:hover {
 }
 
 .navbar-b.navbar-reduce .nav-link {
-  color: #0078ff;
+  color: #444444;
 }
 
 .navbar-b.navbar-reduce .nav-link:before {
-  background-color: #0078ff;
+  background-color: #444444;
 }
 
 .navbar-b.navbar-reduce .nav-link:hover {
-  color: #0078ff;
+  color: #444444;
 }
 
 .navbar-b.navbar-reduce .show > .nav-link,
 .navbar-b.navbar-reduce .active > .nav-link,
 .navbar-b.navbar-reduce .nav-link.show,
 .navbar-b.navbar-reduce .nav-link.active {
-  color: #0078ff;
+  color: #444444;
 }
 
 .navbar-b.navbar-reduce .navbar-brand {
-  color: #0078ff;
+  color: #444444;
 }
 
 .navbar-b.navbar-reduce .navbar-toggler span {
@@ -532,13 +541,13 @@ a:hover {
 }
 
 .navbar-b .dropdown-menu .dropdown-item:hover {
-  background-color: #0078ff;
+  background-color: #444444;
   color: #fff;
   transition: all 500ms ease;
 }
 
 .navbar-b .dropdown-menu .dropdown-item.active {
-  background-color: #0078ff;
+  background-color: #444444;
 }
 
 /*--/ Hamburger Navbar /--*/
@@ -652,15 +661,15 @@ a:hover {
 
 .intro-single .breadcrumb {
   background-color: transparent;
-  color: #0078ff;
+  color: #444444;
 }
 
 .intro-single .breadcrumb .breadcrumb-item:before {
-  color: #cde1f8;
+  color: #cccccc;
 }
 
 .intro-single .breadcrumb .breadcrumb-item.active {
-  color: #cde1f8;
+  color: #cccccc;
 }
 
 .intro-single .breadcrumb a {
@@ -689,7 +698,7 @@ a:hover {
 }
 
 .skill-mf .progress {
-  background-color: #cde1f8;
+  background-color: #cccccc;
   margin: .5rem 0 1.2rem 0;
   border-radius: 0;
   height: .7rem;
@@ -697,7 +706,7 @@ a:hover {
 
 .skill-mf .progress .progress-bar {
   height: .7rem;
-  background-color: #0078ff;
+  background-color: #444444;
 }
 
 /*======================================
@@ -714,8 +723,8 @@ a:hover {
 .service-box:hover .ico-circle {
   transition: all 500ms ease;
   color: #fff;
-  background-color: #0078ff;
-  box-shadow: 0 0 0 10px #cde1f8;
+  background-color: #444444;
+  box-shadow: 0 0 0 10px #cccccc;
 }
 
 .service-box .service-ico {
@@ -756,7 +765,7 @@ a:hover {
   height: 60px;
   width: 60px;
   line-height: 1.8;
-  box-shadow: 0 0 0 10px #cde1f8;
+  box-shadow: 0 0 0 10px #cccccc;
 }
 
 .counter-num .counter {
@@ -773,6 +782,8 @@ a:hover {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .work-box:hover img {
@@ -799,17 +810,17 @@ a:hover {
 }
 
 .work-content .w-more .w-ctegory {
-  color: #0078ff;
+  color: #444444;
 }
 
 .work-content .w-like {
   font-size: 2.5rem;
-  color: #0078ff;
+  color: #444444;
   float: right;
 }
 
 .work-content .w-like a {
-  color: #0078ff;
+  color: #444444;
 }
 
 .work-content .w-like .num-like {
@@ -852,7 +863,7 @@ a:hover {
 
 .testimonial-box .comit {
   font-size: 2rem;
-  color: #0078ff;
+  color: #444444;
   background-color: #fff;
   width: 52px;
   height: 52px;
@@ -866,8 +877,28 @@ a:hover {
 //--//-->   BLOG
 ======================================*/
 
+.card-blog {
+  margin-bottom: 3rem;
+}
+
 .card-blog .card-body {
   position: relative;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.card-blog .card-img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+}
+
+.card-blog .card-img img {
+  transition: transform 0.5s ease;
+}
+
+.card-blog:hover .card-img img {
+  transform: scale(1.05);
 }
 
 .card-blog .card-category-box {
@@ -885,7 +916,7 @@ a:hover {
   color: #fff;
   padding: 0 15px 5px;
   overflow: hidden;
-  background-color: #0078ff;
+  background-color: #444444;
   border-radius: 4px;
 }
 
@@ -939,7 +970,7 @@ a:hover {
 }
 
 .blog-wrapper .post-meta ul {
-  border-left: 4px solid #0078ff;
+  border-left: 4px solid #444444;
   margin-top: 1rem;
 }
 
@@ -949,7 +980,7 @@ a:hover {
 }
 
 .blog-wrapper .post-meta ul a {
-  color: #0078ff;
+  color: #444444;
 }
 
 .blog-wrapper .post-meta ul span {
@@ -957,7 +988,7 @@ a:hover {
 }
 
 .blog-wrapper .blockquote {
-  border-left: 4px solid #0078ff;
+  border-left: 4px solid #444444;
   padding: 18px;
   font-style: italic;
 }
@@ -989,7 +1020,7 @@ a:hover {
 }
 
 .box-comments .list-comments a {
-  color: #0078ff;
+  color: #444444;
 }
 
 .box-comments .list-comments span {
@@ -1006,7 +1037,7 @@ a:hover {
 .widget-sidebar .sidebar-title {
   font-size: 1.6rem;
   font-weight: 600;
-  border-left: 5px solid #0078ff;
+  border-left: 5px solid #444444;
   padding-left: 15px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -1023,7 +1054,7 @@ a:hover {
   width: 10px;
   height: 1px;
   left: 0;
-  background-color: #0078ff;
+  background-color: #444444;
   top: 20px;
 }
 
@@ -1034,8 +1065,8 @@ a:hover {
 }
 
 .sidebar-search .btn-search {
-  background-color: #0078ff;
-  border-color: #0078ff;
+  background-color: #444444;
+  border-color: #444444;
   border-radius: 0;
   padding-left: 20px;
   padding-right: 20px;
@@ -1043,7 +1074,7 @@ a:hover {
 
 .widget-tags ul li {
   display: inline-block;
-  background-color: #0078ff;
+  background-color: #444444;
   padding: .2rem .6rem;
   margin-bottom: .5rem;
   border-radius: 15px;
@@ -1092,8 +1123,8 @@ footer .credits a {
 ======================================*/
 
 #sendmessage {
-  color: #0078ff;
-  border: 1px solid #0078ff;
+  color: #444444;
+  border: 1px solid #444444;
   display: none;
   text-align: center;
   padding: 15px;
@@ -1150,15 +1181,15 @@ footer .credits a {
 }
 
 .button:hover {
-  background-color: #0062d3;
+  background-color: #333333;
   color: #fff;
   transition: all 500ms ease;
 }
 
 .button-a {
-  background-color: #0078ff;
+  background-color: #444444;
   color: #fff;
-  border-color: #cde1f8;
+  border-color: #cccccc;
 }
 
 .button-big {

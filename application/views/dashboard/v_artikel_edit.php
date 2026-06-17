@@ -8,7 +8,7 @@
 
 	<section class="content">
 
-		<a href="<?php echo base_url().'dashboard/artikel'; ?>" class="btn btn-sm btn-primary">Kembali</a>
+		<a href="<?php echo base_url().'dashboard/artikel'; ?>" class="btn btn-sm btn-default">Kembali</a>
 
 		<br/>
 		<br/>
@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col-lg-9">
 
-					<div class="box box-primary">
+					<div class="box box-default">
 						<div class="box-body">
 
 
@@ -49,7 +49,7 @@
 				</div>
 
 				<div class="col-lg-3">
-					<div class="box box-primary">
+					<div class="box box-default">
 						<div class="box-body">
 							<div class="form-group">
 								<label>Kategori</label>

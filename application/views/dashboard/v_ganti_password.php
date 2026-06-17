@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Ganti Password</h3>
 					</div>
@@ -48,7 +48,7 @@
 							</div>
 
 							<div class="box-footer">
-								<input type="submit" class="btn btn-primary" value="Ganti Password">
+								<input type="submit" class="btn btn-default" value="Ganti Password">
 							</div>
 						</form>
 

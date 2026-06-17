@@ -11,12 +11,12 @@
 		<div class="row">
 			<div class="col-lg-9">
 				
-				<a href="<?php echo base_url().'dashboard/kategori_tambah'; ?>" class="btn btn-sm btn-primary">Buat Kategori baru</a>
+				<a href="<?php echo base_url().'dashboard/kategori_tambah'; ?>" class="btn btn-sm btn-default">Buat Kategori baru</a>
 
 				<br/>
 				<br/>
 
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Kategori</h3>
 					</div>

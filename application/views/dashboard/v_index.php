@@ -11,7 +11,7 @@
 		<div class="row">
 
 			<div class="col-lg-3 col-xs-6">
-				<div class="small-box bg-aqua">
+				<div class="small-box bg-black">
 					<div class="inner">
 						<h3><?php echo $jumlah_artikel ?></h3>
 
@@ -67,7 +67,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Dashboard</h3>
 					</div>

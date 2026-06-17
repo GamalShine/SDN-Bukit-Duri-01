@@ -10,12 +10,12 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url().'dashboard/kelulusan'; ?>" class="btn btn-sm btn-primary">Kembali</a>
+				<a href="<?php echo base_url().'dashboard/kelulusan'; ?>" class="btn btn-sm btn-default">Kembali</a>
 				
 				<br/>
 				<br/>
 
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Kelulusan</h3>
 					</div>
@@ -37,6 +37,11 @@
 										<?php echo form_error('nama'); ?>
 									</div>
 									<div class="form-group">
+										<label>Tempat Lahir</label>
+										<input type="text" name="tempat_lahir" class="form-control" placeholder="Masukkan tempat lahir .." value="<?php echo $k->kelulusan_tempat_lahir; ?>">
+										<?php echo form_error('tempat_lahir'); ?>
+									</div>
+									<div class="form-group">
 										<label>Tanggal Lahir</label>
 										<input type="date" name="tanggal_lahir" class="form-control" value="<?php echo $k->kelulusan_tanggal_lahir; ?>">
 										<?php echo form_error('tanggal_lahir'); ?>
@@ -49,11 +54,6 @@
 											<option <?php if($k->kelulusan_status == "TIDAK LULUS"){ echo "selected='selected'"; } ?> value="TIDAK LULUS">TIDAK LULUS</option>
 										</select>
 										<?php echo form_error('status'); ?>
-									</div>
-									<div class="form-group">
-										<label>Keterangan</label>
-										<textarea name="keterangan" class="form-control" rows="4" placeholder="Masukkan keterangan .."><?php echo $k->kelulusan_keterangan; ?></textarea>
-										<?php echo form_error('keterangan'); ?>
 									</div>
 								</div>
 

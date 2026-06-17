@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				
-				<div class="box box-primary">
+				<div class="box box-default">
 					<div class="box-header">
 						<h3 class="box-title">Pengaturan</h3>
 					</div>
@@ -52,27 +52,21 @@
 									<hr>
 
 									<div class="form-group">
-										<label>Link Facebook</label>
-										<input type="text" name="link_facebook" class="form-control" placeholder="Masukkan link facebook .." value="<?php echo $p->link_facebook; ?>">
-										<?php echo form_error('link_facebook'); ?>
-									</div>
-
-									<div class="form-group">
-										<label>Link Twitter</label>
-										<input type="text" name="link_twitter" class="form-control" placeholder="Masukkan link_twitter .." value="<?php echo $p->link_twitter; ?>">
-										<?php echo form_error('link_twitter'); ?>
-									</div>
-
-									<div class="form-group">
 										<label>Link Instagram</label>
-										<input type="text" name="link_instagram" class="form-control" placeholder="Masukkan link_instagram .." value="<?php echo $p->link_instagram; ?>">
+										<input type="text" name="link_instagram" class="form-control" placeholder="https://www.instagram.com/..." value="<?php echo $p->link_instagram; ?>">
 										<?php echo form_error('link_instagram'); ?>
 									</div>
 
 									<div class="form-group">
-										<label>Link Github</label>
-										<input type="text" name="link_github" class="form-control" placeholder="Masukkan link_github .." value="<?php echo $p->link_github; ?>">
-										<?php echo form_error('link_github'); ?>
+										<label>Link YouTube</label>
+										<input type="text" name="link_youtube" class="form-control" placeholder="https://www.youtube.com/..." value="<?php echo $p->link_youtube; ?>">
+										<?php echo form_error('link_youtube'); ?>
+									</div>
+
+									<div class="form-group">
+										<label>Link TikTok</label>
+										<input type="text" name="link_tiktok" class="form-control" placeholder="https://www.tiktok.com/..." value="<?php echo $p->link_tiktok; ?>">
+										<?php echo form_error('link_tiktok'); ?>
 									</div>
 								</div>
 

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Portal Web SDN BUKIT DURI 01 Jakarta Selatan | Dashboard</title>
-	<link href="<?php echo base_url(); ?>gambar/logo_bukitduri.png" rel="icon">
+	<link href="<?php echo base_url(); ?>gambar/logo_sekolah.jpeg" rel="icon">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -17,15 +17,42 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<style>
+		.user-avatar-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: #444;
+			color: #fff;
+			border-radius: 50%;
+		}
+		.user-avatar-icon-sm {
+			width: 25px;
+			height: 25px;
+			font-size: 14px;
+			margin-right: 10px;
+			margin-top: -8px;
+		}
+		.user-avatar-icon-md {
+			width: 45px;
+			height: 45px;
+			font-size: 22px;
+		}
+		.user-avatar-icon-lg {
+			width: 90px;
+			height: 90px;
+			font-size: 42px;
+			margin: 0 auto 10px;
+		}
+	</style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">			
-			<a href="<?php echo base_url(); ?>" class="logo d-flex align-items-center justify-content-center">
-				<img src="<?php echo base_url(); ?>gambar/logo_bukitduri.png" width="40px" height="40px" class="mr-2" alt="Logo">
+			<a href="<?php echo base_url(); ?>" class="logo">
 				<span class="logo-mini"><b>SDN</b></span>
-				<span class="logo-lg"><b>SDN</b> BUKIT DURI 01 Jaksel</span>
+				<span class="logo-lg"><b>SDN</b> Bukit Duri 01</span>
 			</a>
 			
 			<nav class="navbar navbar-static-top">
@@ -38,12 +65,12 @@
 					<ul class="nav navbar-nav">
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="<?php echo base_url(); ?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+								<span class="user-image user-avatar-icon user-avatar-icon-sm"><i class="fa fa-user-md"></i></span>
 								<span class="hidden-xs">HAK AKSES : <b><?php echo $this->session->userdata('level') ?></b></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="user-header">
-									<img src="<?php echo base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+									<span class="img-circle user-avatar-icon user-avatar-icon-lg"><i class="fa fa-user-md"></i></span>
 									<p>
 										<?php echo $this->session->userdata('username') ?>
 										<small>Hak akses : <?php echo $this->session->userdata('level') ?></small>
@@ -69,7 +96,7 @@
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="<?php echo base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+						<span class="img-circle user-avatar-icon user-avatar-icon-md"><i class="fa fa-user-md"></i></span>
 					</div>
 					<div class="pull-left info">
 						<?php 
@@ -123,6 +150,12 @@
 						<a href="<?php echo base_url().'dashboard/fasilitas' ?>">
 							<i class="fa fa-image"></i>
 							<span>FASILITAS</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url().'dashboard/testimoni' ?>">
+							<i class="fa fa-comment"></i>
+							<span>TESTIMONI</span>
 						</a>
 					</li>
 					<li>

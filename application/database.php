@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'u1045920_banten',
-	'password' => 'bantenlksn2020',
-	'database' => 'u1045920_banten',
+	'dsn' => '',
+	'hostname' => 'sql100.infinityfree.com',
+	'username' => 'if0_41775186',
+	'password' => 'tnlBmpxemIUvGIt',
+	'database' => 'if0_41775186_sdn',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

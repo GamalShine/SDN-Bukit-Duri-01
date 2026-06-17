@@ -20,6 +20,9 @@ class Welcome extends CI_Controller {
 		// data fasilitas
 		$data['fasilitas'] = $this->db->query("SELECT * FROM fasilitas ORDER BY fasilitas_id DESC LIMIT 6")->result();
 
+		// data testimoni
+		$data['testimoni'] = $this->db->query("SELECT * FROM testimoni ORDER BY testimoni_urutan ASC, testimoni_id ASC")->result();
+
 		// data pengaturan website
 		$data['pengaturan'] = $this->m_data->get_data('pengaturan')->row();
 
@@ -286,7 +289,8 @@ class Welcome extends CI_Controller {
 				'kelulusan_tanggal_lahir' => $tanggal_lahir
 			);
 
-			$data['hasil'] = $this->db->get_where('kelulusan', $where)->row();
+			$result = $this->db->get_where('kelulusan', $where)->row();
+			$data['hasil'] = $result ? $result : false;
 		}
 
 		$this->load->view('frontend/v_header',$data);

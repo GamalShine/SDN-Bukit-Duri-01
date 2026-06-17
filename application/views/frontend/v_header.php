@@ -8,10 +8,10 @@
   <meta content="<?php echo $meta_description ?>" name="description">
 
   <!-- Favicons -->
-  <link href="<?php echo base_url().'gambar/logo_bukitduri.png'; ?>" rel="icon">
-  <link href="<?php echo base_url().'gambar/logo_bukitduri.png'; ?>" rel="shortcut icon">
-  <link href="<?php echo base_url().'gambar/logo_bukitduri.png'; ?>" rel="apple-touch-icon">
-  <link rel="mask-icon" href="<?php echo base_url().'gambar/logo_bukitduri.png'; ?>" color="#5bbad5">
+  <link href="<?php echo base_url().'gambar/logo_sekolah.jpeg'; ?>" rel="icon">
+  <link href="<?php echo base_url().'gambar/logo_sekolah.jpeg'; ?>" rel="shortcut icon">
+  <link href="<?php echo base_url().'gambar/logo_sekolah.jpeg'; ?>" rel="apple-touch-icon">
+  <link rel="mask-icon" href="<?php echo base_url().'gambar/logo_sekolah.jpeg'; ?>" color="#5bbad5">
   <meta name="theme-color" content="#ffffff">
   <link href="<?php echo base_url(); ?>assets_frontend/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -40,11 +40,14 @@
 
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container-fluid px-md-5">
 
       <div class="d-flex align-items-center">
-        <img src="<?php echo base_url().'gambar/logo_bukitduri.png'; ?>" width="45px" height="45px" class="mr-3" alt="Logo">
-        <a class="navbar-brand js-scroll mb-0" href="#page-top"><?php echo $pengaturan->nama ?> </a>
+        <img src="<?php echo base_url().'gambar/logo_sekolah.jpeg'; ?>" width="45px" height="45px" class="mr-3" alt="Logo">
+        <a class="navbar-brand js-scroll mb-0" href="#page-top">
+          <span class="d-none d-md-inline"><?php echo $pengaturan->nama ?></span>
+          <span class="d-inline d-md-none">SDN Bukit Duri 01</span>
+        </a>
       </div>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
